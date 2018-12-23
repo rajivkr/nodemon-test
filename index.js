@@ -1,5 +1,5 @@
 import express from 'express';
-import { attach } from './helpers/appmetrics-prometheus';
+require('appmetrics-prometheus').attach();
 
 const app = express();
 
@@ -12,7 +12,6 @@ app.set('port', port);
 app.get('*', (req, res) => {
   res.send('app loaded');
 });
-attach();
 
 app.listen(port || config.port, () => {
   console.log(`App started in port ${port}`);
